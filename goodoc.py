@@ -103,9 +103,15 @@ def make():
         os.makedirs(SITE_DIR)
 
     pages = _get_pages_data()
-    print pages
-        
 
+    from bs4 import BeautifulSoup as bs
+    for p in pages:
+        # TODO: refactor this to _get_pages_data
+        raw_doc_file = os.path.join(RAW_PAGES_DIR, '%s.html' % p['doc_id'])
+        html = open(raw_doc_file, 'r').read()
+        soup = bs(html)
+        contents = soup.find("div", {"id": "contents"})
+        print contents
 
 def help():
     "prints help"
