@@ -1,0 +1,19 @@
+This is a command line utility.
+
+Syntax:
+
+python goodoc.py [command]
+
+Commands are:
+
+get
+
+Get pages from Google Docs.
+
+make
+
+Create static pages.
+
+serve
+
+Serve static files on localhost.
