@@ -112,6 +112,10 @@ def make():
         soup = bs(html)
         contents = soup.find("div", {"id": "contents"})
         print contents
+        page_file = os.path.join(SITE_DIR, '%s.html' % p['Short Link'])
+        f = open(page_file, 'w')
+        f.write(contents.encode('utf8'))
+        f.close()
 
 def help():
     "prints help"
