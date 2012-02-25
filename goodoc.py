@@ -1,6 +1,8 @@
 #!/usr/bin/python
 import sys
 
+from settings import *
+
 
 def get():
     "downloads spreadsheet with list of pages and each HTML for each page"
@@ -17,7 +19,6 @@ def help():
     print ""
 
 def main():
-    
     args = sys.argv
     command = None
     if len(args) > 1:
