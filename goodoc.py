@@ -7,7 +7,7 @@ from settings import *
 
 def get_html(url):
     "for url gets its html"
-    response = urllib2.urlopen(PAGES_LINK)
+    response = urllib2.urlopen(url)
     html = response.read()
     return html
 
@@ -74,7 +74,6 @@ def get():
     import re
 
     reg_doc = r'd/(.+)/edit'
-    page_link_pattern = 'https://docs.google.com/document/pub?id=%s'
 
     for p in pages:
         if p["Link"]:
@@ -82,7 +81,7 @@ def get():
 
             print "downloading doc_id %s" % doc_id
 
-            html = get_html(page_link_pattern % doc_id)
+            html = get_html('https://docs.google.com/document/pub?id=%s' % doc_id)
             raw_doc_file = os.path.join(RAW_PAGES_DIR, '%s.html' % doc_id)
             f = open(raw_doc_file, 'w')
             f.write(html)
