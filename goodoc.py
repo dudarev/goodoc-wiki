@@ -70,13 +70,23 @@ def get():
     # Download pages
     # https://docs.google.com/document/d/1s4ke5WEmThv1y51hIAAbJhcq8At8eP7qCDv8rIi6258/edit?disco=AAAAAEfFcUA
     # https://docs.google.com/document/pub?id=1s4ke5WEmThv1y51hIAAbJhcq8At8eP7qCDv8rIi6258
+
     import re
-    reg = r'd/(.+)/edit'
+
+    reg_doc = r'd/(.+)/edit'
+    page_link_pattern = 'https://docs.google.com/document/pub?id=%s'
+
     for p in pages:
-        print p["Link"]
         if p["Link"]:
-            doc_id = re.findall(reg, p['Link'])[0]
-            print doc_id
+            doc_id = re.findall(reg_doc, p['Link'])[0]
+
+            print "downloading doc_id %s" % doc_id
+
+            html = get_html(page_link_pattern % doc_id)
+            raw_doc_file = os.path.join(RAW_PAGES_DIR, '%s.html' % doc_id)
+            f = open(raw_doc_file, 'w')
+            f.write(html)
+            f.close()
 
 def help():
     "prints help"
