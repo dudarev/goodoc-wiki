@@ -1,9 +1,15 @@
 #!/usr/bin/python
 import os
 import sys
+import urllib2
 
 from settings import *
 
+def get_html(url):
+    "for url gets its html"
+    response = urllib2.urlopen(PAGES_LINK)
+    html = response.read()
+    return html
 
 def get():
     "downloads spreadsheet with list of pages and each HTML for each page"
@@ -19,17 +25,16 @@ def get():
         # download pages spreadsheet if -n option is NOT specified
         print "downloading link pages spreadsheet..."
 
-        import urllib2
-        response = urllib2.urlopen(PAGES_LINK)
-        html = response.read()
-
+        html = get_html(PAGES_LINK)
+        print html
+        
         if not os.path.exists(RAW_PAGES_DIR):
-            print "Create directory for pages."
+            print "Creating directory for pages."
             os.makedirs(RAW_PAGES_DIR)
         
-        f = open(os.path.join(RAW_PAGES_DIR, 'pages.html'), 'w')
+        f = open(raw_pages_file, 'w')
         f.write(html)
-    
+        f.close()
     else:
         print "pages spreadsheet is NOT downloaded"
 
@@ -63,6 +68,15 @@ def get():
 
     # TODO
     # Download pages
+    # https://docs.google.com/document/d/1s4ke5WEmThv1y51hIAAbJhcq8At8eP7qCDv8rIi6258/edit?disco=AAAAAEfFcUA
+    # https://docs.google.com/document/pub?id=1s4ke5WEmThv1y51hIAAbJhcq8At8eP7qCDv8rIi6258
+    import re
+    reg = r'd/(.+)/edit'
+    for p in pages:
+        print p["Link"]
+        if p["Link"]:
+            doc_id = re.findall(reg, p['Link'])[0]
+            print doc_id
 
 def help():
     "prints help"
