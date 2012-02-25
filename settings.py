@@ -4,3 +4,4 @@ PAGES_LINK = "https://docs.google.com/spreadsheet/pub?key=0Ar7fZWxISpOKdHU1WHlKb
 
 RAW_PAGES_DIR = "_pages"
 SITE_DIR = "_site"
+TEMPLATES_DIR = "_templates"

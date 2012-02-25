@@ -47,6 +47,9 @@ def _get_pages_data():
     
     return pages
 
+# TODO: for future consideration - remove attributes
+# https://gist.github.com/673417
+
 def get():
     "downloads spreadsheet with list of pages and each HTML for each page"
 
@@ -105,16 +108,19 @@ def make():
     pages = _get_pages_data()
 
     from bs4 import BeautifulSoup as bs
+
+    from jinja2 import Template
+    template = Template(open(os.path.join(TEMPLATES_DIR, 'page.html'), 'r').read())
+
     for p in pages:
         # TODO: refactor this to _get_pages_data
         raw_doc_file = os.path.join(RAW_PAGES_DIR, '%s.html' % p['doc_id'])
         html = open(raw_doc_file, 'r').read()
         soup = bs(html)
         contents = soup.find("div", {"id": "contents"})
-        print contents
         page_file = os.path.join(SITE_DIR, '%s.html' % p['Short Link'])
         f = open(page_file, 'w')
-        f.write(contents.encode('utf8'))
+        f.write(template.render(contents=contents).encode('utf8'))
         f.close()
 
 def help():
