@@ -13,6 +13,8 @@ def get():
     parser.add_option("-n", "--no-pages", action="store_true", dest="no pages")
     (opts, args) = parser.parse_args(sys.argv[2:])
 
+    raw_pages_file = os.path.join(RAW_PAGES_DIR, 'pages.html')
+
     if not getattr(opts,"no pages"):
         # download pages spreadsheet if -n option is NOT specified
         print "downloading link pages spreadsheet..."
@@ -30,6 +32,37 @@ def get():
     
     else:
         print "pages spreadsheet is NOT downloaded"
+
+    # parse pages spreadsheet
+    pages = [] # list of property:value dicts
+    from bs4 import BeautifulSoup as bs
+
+    page = open(raw_pages_file, 'r').read()
+    soup = bs(page)
+    rows = soup.find_all('tr')
+
+    # properties are stored in row 2 (link to page, date, changed, short link etc.)
+    properties_row = 2
+    properties = [p.text for p in rows[properties_row].find_all('td')]
+
+    # TODO: print if verbose
+    # print properties
+
+    for row_data in rows[properties_row + 1:]:
+        data = [d.text for d in row_data.find_all('td')]
+        page = {}
+        for p,d in zip(properties, data):
+            # property name should be larger than
+            if len(p) > 1:
+                page[p] = d
+        pages.append(page)
+
+    # TODO: print if verbose
+    # for p in pages:
+    #    print p['Title']
+
+    # TODO
+    # Download pages
 
 def help():
     "prints help"
