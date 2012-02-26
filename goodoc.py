@@ -55,6 +55,31 @@ def _youtube_link_to_embed(html):
     <iframe width="560" height="315" src="http://www.youtube.com/embed/4s4jluxdP4c" frameborder="0" allowfullscreen></iframe>
     """
 
+    from bs4 import BeautifulSoup as bs, Tag
+    
+    soup = bs(html)
+    for a in soup.find_all('a'):
+        if "http://www.youtube.com/watch?v=" in a['href']:
+            iframe = Tag(a, name='iframe')
+            iframe['width'] = "560"
+            iframe['height'] = "315"
+            iframe['frameborder'] = "0"
+
+            print a['href']
+            link = a['href']
+
+            ytid = link[link.find('v=')+2:]
+            if '&' in ytid:
+                ytid = ytid[:link.find('&')]
+
+            print ytid
+            iframe['src'] = "http://www.youtube.com/embed/" + ytid
+
+            a.replaceWith(iframe)
+            iframe.insert(0, a)   
+
+    return str(soup)
+
 # TODO: for future consideration - remove attributes
 # https://gist.github.com/673417
 
@@ -124,6 +149,7 @@ def make():
         # TODO: refactor this to _get_pages_data
         raw_doc_file = os.path.join(RAW_PAGES_DIR, '%s.html' % p['doc_id'])
         html = open(raw_doc_file, 'r').read()
+        html = _youtube_link_to_embed(html)
         soup = bs(html)
         contents = soup.find("div", {"id": "contents"})
         page_file = os.path.join(SITE_DIR, '%s.html' % p['Short Link'])
