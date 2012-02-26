@@ -84,14 +84,14 @@ body{ font:16px/26px Helvetica, Helvetica Neue, Arial; }
     ALL: Orange Theme
    =================== */
 
-#header-container{ border-bottom: 20px solid #e44d26; }
-#footer-container{ border-top:    20px solid #e44d26; }
-#main aside      { border-top:    20px solid #e44d26; }
+#header-container{ border-bottom: 20px solid #aaa; }
+#footer-container{ border-top:    20px solid #aaa; }
+#main aside      { border-top:    20px solid #aaaaaa; padding-bottom: 20px}
 
 #header-container,
 #footer-container,
 #main aside{
-	background:#f16529;
+	background:#dddddd;
 }
 
 #title{ color:white; }
@@ -108,7 +108,7 @@ nav a{
 	margin-bottom:10px;
 	padding:15px 0;
 
-	background:#e44d26;
+	background:#aaa;
 	color:white;
 
 	text-align:center;
@@ -138,11 +138,11 @@ nav a:hover{
 
 #main aside{
 	color:white;
-	padding:0px 5% 10px;
+	padding:0px 5% 50px;
 }
 
 #footer-container footer{
-	color:white;
+	color:black;
 	padding:20px 0;
 }
 
