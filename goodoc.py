@@ -47,6 +47,14 @@ def _get_pages_data():
     
     return pages
 
+def _youtube_link_to_embed(html):
+    """parse html
+    find all youtube links in the format
+    <a href="...">http://www.youtube.com/watch?v=4s4jluxdP4c&list=UUhcJt_ugtjjjr0RxOKhC61w&index=1&feature=plcp</a>
+    and replace the whole tag with embeded code in format
+    <iframe width="560" height="315" src="http://www.youtube.com/embed/4s4jluxdP4c" frameborder="0" allowfullscreen></iframe>
+    """
+
 # TODO: for future consideration - remove attributes
 # https://gist.github.com/673417
 
