@@ -128,7 +128,7 @@ def make():
         contents = soup.find("div", {"id": "contents"})
         page_file = os.path.join(SITE_DIR, '%s.html' % p['Short Link'])
         f = open(page_file, 'w')
-        f.write(template.render(contents=contents, NAV_PAGES=NAV_PAGES).encode('utf8'))
+        f.write(template.render(contents=contents, NAV_PAGES=NAV_PAGES, page=p).encode('utf8'))
         f.close()
 
     # create Pages page
