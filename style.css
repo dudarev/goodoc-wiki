@@ -84,17 +84,44 @@ body{ font:16px/26px Helvetica, Helvetica Neue, Arial; }
     ALL: Orange Theme
    =================== */
 
-#header-container{ border-bottom: 20px solid #e44d26; }
-#footer-container{ border-top:    20px solid #e44d26; }
-#main aside      { border-top:    20px solid #e44d26; }
+#header-container{ border-bottom: 20px solid #adadad;
 
-#header-container,
+background-image: linear-gradient(bottom, rgb(233,233,233) 6%, rgb(247,247,247) 55%);
+background-image: -o-linear-gradient(bottom, rgb(233,233,233) 6%, rgb(247,247,247) 55%);
+background-image: -moz-linear-gradient(bottom, rgb(233,233,233) 6%, rgb(247,247,247) 55%);
+background-image: -webkit-linear-gradient(bottom, rgb(233,233,233) 6%, rgb(247,247,247) 55%);
+background-image: -ms-linear-gradient(bottom, rgb(233,233,233) 6%, rgb(247,247,247) 55%);
+
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0.06, rgb(233,233,233)),
+	color-stop(0.55, rgb(247,247,247))
+);
+}
+#footer-container{ border-top:    20px solid #adadad; }
+#main aside      { border-top:    20px solid #adadad; }
+
 #footer-container,
 #main aside{
-	background:#f16529;
+	/*background:#f16529;*/
+	background-image: linear-gradient(bottom, rgb(233,233,233) 6%, rgb(247,247,247) 55%);
+background-image: -o-linear-gradient(bottom, rgb(233,233,233) 6%, rgb(247,247,247) 55%);
+background-image: -moz-linear-gradient(bottom, rgb(233,233,233) 6%, rgb(247,247,247) 55%);
+background-image: -webkit-linear-gradient(bottom, rgb(233,233,233) 6%, rgb(247,247,247) 55%);
+background-image: -ms-linear-gradient(bottom, rgb(233,233,233) 6%, rgb(247,247,247) 55%);
+
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0.06, rgb(233,233,233)),
+	color-stop(0.55, rgb(247,247,247))
+);
 }
 
-#title{ color:white; }
+#title{ color:black; text-shadow: 0px 1px 1px #fff; }
 
 ::-moz-selection { background: #f16529; color: #fff; text-shadow: none; }
 ::selection      { background: #f16529; color: #fff; text-shadow: none; }
@@ -108,21 +135,25 @@ nav a{
 	margin-bottom:10px;
 	padding:15px 0;
 
-	background:#e44d26;
+	background:#d1d1d1;
 	color:white;
-
+	opacity:0.8;
 	text-align:center;
 	text-decoration:none;
 	font-weight:bold;
+	color:#1d1d1d;
+	text-shadow: 0px 1px 1px #fff;
 }
 
 nav a:hover, nav a:visited{
-	color:white;
+	color:#fff;
+	text-shadow: 0px 1px 1px #000;
+	background:#3e3e3e;
 }
 
-nav a:hover{
+/*nav a:hover{
 	text-decoration:underline;
-}
+}*/
 
 /* ==============
     MOBILE: Main
@@ -142,7 +173,8 @@ nav a:hover{
 }
 
 #footer-container footer{
-	color:white;
+	color:black;
+	text-shadow: 0px 1px 1px #fff;
 	padding:20px 0;
 }
 
