@@ -128,14 +128,14 @@ def make():
         contents = soup.find("div", {"id": "contents"})
         page_file = os.path.join(SITE_DIR, '%s.html' % p['Short Link'])
         f = open(page_file, 'w')
-        f.write(template.render(contents=contents).encode('utf8'))
+        f.write(template.render(contents=contents, NAV_PAGES=NAV_PAGES).encode('utf8'))
         f.close()
 
     # create Pages page
     template = Template(open(os.path.join(TEMPLATES_DIR, 'all_pages.html'), 'r').read().decode('utf8'))
     page_file = os.path.join(SITE_DIR, 'Pages.html')
     f = open(page_file, 'w')
-    f.write(template.render(pages=pages).encode('utf8'))
+    f.write(template.render(pages=pages, NAV_PAGES=NAV_PAGES).encode('utf8'))
     f.close()
 
     from shutil import copy

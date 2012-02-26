@@ -38,7 +38,13 @@
         <div id="main" class="wrapper clearfix">
 
             <article>
-                {{ contents }}
+                <ul>
+                {% for p in pages -%}
+                <li>
+                <a href="{{ p['Short Link'] }}.html">{{ p['Title'] }}</a>
+                </li>
+                {%- endfor %}
+            </ul>
             </article>
 
             <aside>
