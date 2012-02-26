@@ -131,6 +131,19 @@ def make():
         f.write(template.render(contents=contents).encode('utf8'))
         f.close()
 
+    # create Pages page
+    template = Template(open(os.path.join(TEMPLATES_DIR, 'all_pages.html'), 'r').read().decode('utf8'))
+    page_file = os.path.join(SITE_DIR, 'Pages.html')
+    f = open(page_file, 'w')
+    f.write(template.render(pages=pages).encode('utf8'))
+    f.close()
+
+    from shutil import copy
+    copy(
+            os.path.join(SITE_DIR, 'Home.html'),
+            os.path.join(SITE_DIR, 'index.html')
+        )
+
 def help():
     "prints help"
     print ""
