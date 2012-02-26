@@ -118,7 +118,7 @@ def make():
     from bs4 import BeautifulSoup as bs
 
     from jinja2 import Template
-    template = Template(open(os.path.join(TEMPLATES_DIR, 'page.html'), 'r').read())
+    template = Template(open(os.path.join(TEMPLATES_DIR, 'page.html'), 'r').read().decode('utf8'))
 
     for p in pages:
         # TODO: refactor this to _get_pages_data
