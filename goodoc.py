@@ -164,11 +164,23 @@ def make():
     f.write(template.render(pages=pages, NAV_PAGES=NAV_PAGES).encode('utf8'))
     f.close()
 
-    from shutil import copy
+    from shutil import copy, copy2
     copy(
             os.path.join(SITE_DIR, 'Home.html'),
             os.path.join(SITE_DIR, 'index.html')
         )
+
+
+    print "copy js and css files from templates directory"
+    from glob import iglob
+
+    extensions = ['js', 'css']
+
+    for ext in extensions:
+        files = iglob(os.path.join(TEMPLATES_DIR, "*."+ext))
+        for file in files:
+            if os.path.isfile(file):
+                copy2(file, SITE_DIR)
 
 def help():
     "prints help"
